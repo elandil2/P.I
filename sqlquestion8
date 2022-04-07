@@ -1,1 +1,25 @@
-SELECT * FROM Book2
+/* 
+Assume any database includes below columns and you are requested to process Stats_Access_Link column and extract pure url information inside per device type. 
+
+    Rules: 
+-   Xml tags and protocol parts is guaranteed to be lower case  
+-   Access link part that we are interested in can have alpha-numeric, case insensitive characters, underscore ( _ ) character and dot ( . ) character only.  
+
+What would you use for this task, please write your detailed answer with exact solution? Please  provide the link to your code as answer to this question 
+
+This question is regex question but  im using online ide on https://sqliteonline.com/  and it returned errors so many times .. no such function: regex,  no such function: REGEXP, no such function: REGEXP_SUBSTR
+
+Also searched for parse tag and urls subjects to find solution.
+
+replace(column, search, replace) column we want to change, search whatever we looking for and replace it.replace function working like that.
+
+Tried this on ide  as regex : <url>(https:\/\/|http:\/\/)*.*<\/url> 
+
+Book2 is table. i created manually on excel based on your question. So i can try my solutions as query
+
+*/
+SELECT device_type,
+	lower(REPLACE(REPLACE(REPLACE(REPLACE(stats_access_link,'<url>',''), '</url>',''), 'https://', ''), 'http://','')) AS stats_access_link
+    
+FROM 
+	Book2;
